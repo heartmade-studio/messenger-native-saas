@@ -2,6 +2,8 @@
 
 **Moon Cue App** is a subscription product built by Heartmade using the **Messenger-Native SaaS** pattern: users interact primarily in **Telegram**, while **Stripe** handles billing and **Supabase** stores application state. Server routes run on **Vercel**.
 
+Live product: **[https://trycue.pl](https://trycue.pl)**.
+
 This file describes the **positioning and architecture narrative** for Heartmade. It does **not** include proprietary implementation details or user data.
 
 ## Problem

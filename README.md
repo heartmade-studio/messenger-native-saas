@@ -4,7 +4,7 @@
 
 This repository is intentionally **small and opinionated**: a landing page and API routes on **Vercel**, **Stripe** subscriptions, **Supabase** persistence, and a **Telegram** bot via webhooks.
 
-It is **not** the production codebase of any client product. For a real-world narrative, see **[Moon Cue App](docs/moon-cue-app-case-study.md)**.
+It is **not** the production codebase of any client product. For a real-world narrative, see **[Moon Cue App](docs/moon-cue-app-case-study.md)** and the live site: **[trycue.pl](https://trycue.pl)**.
 
 ## What “Messenger-Native SaaS” means
 
