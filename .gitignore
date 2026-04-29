@@ -3,10 +3,6 @@ node_modules/
 .pnp
 .pnp.js
 
-# Next.js
-.next/
-out/
-
 # Env
 .env
 .env.local
@@ -26,8 +22,8 @@ yarn-error.log*
 # Vercel
 .vercel
 
-# TypeScript
-*.tsbuildinfo
-
 # Testing
 coverage/
+
+# Build output (if any)
+/dist/

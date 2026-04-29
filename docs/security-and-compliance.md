@@ -6,7 +6,7 @@ This template handles **payments** and **personal identifiers** (Telegram chat i
 
 - Never commit `.env` or service keys.
 - **Rotate** keys if they leak; Stripe and Supabase dashboards support rotation.
-- On Vercel, use **project environment variables** (encrypted at rest); restrict team access.
+- On your deployment platform, use **project environment variables** (encrypted at rest); restrict team access.
 
 ## Webhooks
 

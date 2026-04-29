@@ -1,11 +1,15 @@
 ---
-title: Messenger-Native SaaS — UI tokens
+title: Messenger-Native SaaS — Landing design tokens
 version: 1
 ---
 
 # Overview
 
-Minimal design tokens for the **demo landing page** in this repository. The primary product UX is **Telegram**; this page exists for checkout acquisition and documentation links.
+Minimal design tokens for the **static demo landing page** in this monorepo.
+
+Primary product UX is **Telegram** (or another messenger). This landing exists for checkout acquisition and documentation links.
+
+Landing implementation: [`apps/landing/`](apps/landing/).
 
 # Colors
 
@@ -25,8 +29,8 @@ Minimal design tokens for the **demo landing page** in this repository. The prim
 
 # Layout
 
-- **Max content width**: `640px` centered main column
-- **Spacing**: `2.5rem` outer padding; `1.5rem` card padding
+- **Max content width**: `980px` centered container
+- **Spacing**: `16px` horizontal padding on the container; sections use natural vertical rhythm
 
 # Elevation and depth
 
@@ -35,12 +39,12 @@ Minimal design tokens for the **demo landing page** in this repository. The prim
 # Shapes
 
 - **Cards**: `border-radius: 12px` (`--radius-card`)
-- **Inputs / buttons**: `8px` radius
+- **Buttons / small UI**: `8px` radius (`--radius-sm`)
 
 # Components
 
 - **Primary button**: filled `--color-accent`, white label
-- **Form inputs**: light border, no heavy chrome
+- **Link + hover**: use accent colors consistently, avoid underlined heavy styling
 
 # Do's and don'ts
 

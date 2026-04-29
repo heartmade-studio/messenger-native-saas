@@ -7,24 +7,23 @@ This document describes the **reference** flow implemented in this repository. S
 ```mermaid
 flowchart LR
   Visitor["Visitor"] --> LandingPage["Landing Page"]
-  LandingPage --> CheckoutAPI["POST /api/checkout"]
-  CheckoutAPI --> StripeCheckout["Stripe Checkout"]
-  StripeCheckout --> StripeWebhook["POST /api/webhooks/stripe"]
-  StripeWebhook --> VercelApi["Vercel Server"]
-  VercelApi --> Supabase["Supabase Postgres"]
+  LandingPage --> StripeCheckout["Stripe hosted checkout link"]
+  StripeCheckout --> StripeWebhook["Stripe webhook events"]
+  StripeWebhook --> Backend["Backend server"]
+  Backend --> Supabase["Supabase Postgres"]
   TelegramUser["User in Telegram"] --> TelegramWebhook["POST /api/webhooks/telegram"]
-  TelegramWebhook --> VercelApi
-  VercelApi --> TelegramAPI["Telegram Bot API sendMessage"]
+  TelegramWebhook --> Backend
+  Backend --> TelegramAPI["Telegram Bot API sendMessage"]
   TelegramAPI --> TelegramUser
 ```
 
 ## Components
 
 | Layer | Role |
-|-------|------|
-| **Landing (Next.js)** | Marketing + CTA; collects optional `telegram_chat_id` so Stripe metadata can link billing to chat. |
+| ------- | ------ |
+| **Landing (static HTML/CSS)** | Marketing + CTA; collects optional `telegram_chat_id` so Stripe metadata can link billing to chat. |
 | **Stripe** | Checkout Session (subscription mode), webhooks for lifecycle events. |
-| **Vercel** | Hosts HTTP routes: checkout creation, Stripe webhook, Telegram webhook. |
+| **Backend** | Hosts HTTP routes: checkout session creation (optional), Stripe webhook, Telegram webhook. |
 | **Supabase** | Persists `subscriptions` (customer id, subscription id, status, `telegram_chat_id`). |
 | **Telegram** | Primary UX: commands such as `/start` and `/status`, implemented via **getUpdates webhook** (not long polling in serverless). |
 
@@ -38,11 +37,11 @@ sequenceDiagram
   participant W as StripeWebhook
   participant DB as Supabase
 
-  U->>L: Enter telegram_chat_id optional
-  L->>S: Checkout Session metadata telegram_chat_id
+  U->>L: Open Stripe hosted checkout link
+  L->>S: Redirect to Stripe checkout
   U->>S: Pay test card
-  S->>W: checkout.session.completed
-  W->>DB: Upsert subscriptions row
+  S->>W: Subscription lifecycle webhook event(s)
+  W->>DB: Upsert subscriptions row (linking customer to Telegram chat if you store chat id in metadata)
 ```
 
 ## Sequence — bot command
@@ -64,8 +63,8 @@ sequenceDiagram
 
 ## Environment boundaries
 
-- **Public**: `NEXT_PUBLIC_APP_URL`, `NEXT_PUBLIC_SUPABASE_URL` (anon key is **not** required for this template’s server routes; the server uses the **service role** key only in trusted routes).
-- **Secret**: Stripe keys, webhook secret, `SUPABASE_SERVICE_ROLE_KEY`, `TELEGRAM_BOT_TOKEN`, optional `TELEGRAM_WEBHOOK_SECRET`.
+- **Public**: generally none for the webhook endpoints; if you add a frontend, you may use the Supabase anon key only for non-sensitive reads.
+- **Secret**: Stripe keys + webhook secret, `SUPABASE_SERVICE_ROLE_KEY`, `TELEGRAM_BOT_TOKEN`, optional `TELEGRAM_WEBHOOK_SECRET` (used only in your backend).
 
 Never expose the **service role** key to the browser.
 

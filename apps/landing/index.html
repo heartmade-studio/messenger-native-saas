@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Messenger-Native SaaS — Heartmade reference</title>
+    <meta
+      name="description"
+      content="Subscription software delivered inside Telegram (messenger-native), with Stripe billing and Supabase as the system of record."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="container header">
+      <div class="brand" aria-label="Heartmade">
+        <span class="brandMark" aria-hidden="true"></span>
+        <span class="brandText">Heartmade</span>
+      </div>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#what">What it is</a>
+        <a href="#case">Moon Cue App</a>
+        <a href="#how">How it works</a>
+      </nav>
+    </header>
+
+    <main id="main" class="container main">
+      <section class="hero">
+        <div class="heroText">
+          <p class="kicker">Messenger-Native SaaS</p>
+          <h1>
+            Build subscription products where users already are: in Telegram (or
+            any messenger).
+          </h1>
+          <p class="lead">
+            Landing stays lightweight; billing stays standard (Stripe); your data
+            lives in Supabase.
+          </p>
+
+          <div class="ctaRow">
+            <a
+              class="button primary"
+              href="https://checkout.stripe.com/"
+              rel="noreferrer"
+            >
+              Subscribe (Stripe)
+            </a>
+            <a class="button" href="#how">See the flow</a>
+          </div>
+
+          <p class="finePrint">
+            Replace the Stripe URL with your configured hosted checkout link
+            (Payment Link / Checkout redirect URL). This repo intentionally
+            ships only a static landing.
+          </p>
+        </div>
+
+        <div class="heroCard" role="note" aria-label="Live product link">
+          <h2>Live product</h2>
+          <p>
+            Try <strong>Moon Cue App</strong>:
+            <a href="https://trycue.pl" rel="noreferrer">https://trycue.pl</a>
+          </p>
+          <p class="muted">
+            Reference narrative and architecture are described in the docs.
+          </p>
+        </div>
+      </section>
+
+      <section id="what" class="section">
+        <h2>What “messenger-native” means</h2>
+        <div class="grid2">
+          <div class="card">
+            <h3>Traditional SaaS</h3>
+            <ul>
+              <li>Browser dashboard</li>
+              <li>App installs (optional)</li>
+              <li>Separate UX surface</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Messenger-Native SaaS</h3>
+            <ul>
+              <li>Core UX in Telegram / WhatsApp</li>
+              <li>No new account paradigm</li>
+              <li>Billing via Stripe subscription</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="case" class="section">
+        <h2>Case study: Moon Cue App</h2>
+        <p>
+          Moon Cue App supports partners by explaining what the cycle phase can
+          mean in everyday moments and helping the couple communicate with
+          empathy.
+        </p>
+        <p>
+          Read: <a href="../../docs/moon-cue-app-case-study.md">docs</a>.
+        </p>
+      </section>
+
+      <section id="how" class="section">
+        <h2>High-level flow</h2>
+        <ol class="steps">
+          <li>
+            Visitor lands on this page and starts checkout via the Stripe hosted link.
+          </li>
+          <li>
+            Stripe confirms subscription on your backend (not included in this static landing template).
+          </li>
+          <li>
+            Telegram bot uses your backend state (typically Supabase) to deliver reminders and guidance.
+          </li>
+        </ol>
+      </section>
+
+      <section class="section footerSection" aria-label="Footer">
+        <p class="muted">
+          Heartmade reference starter. Docs are in this monorepo under
+          <code>docs/</code>; the static landing is under
+          <code>apps/landing/</code>.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
+

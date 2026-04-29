@@ -8,7 +8,9 @@ This file describes the **positioning and architecture narrative** for Heartmade
 
 ## Problem
 
-People who track cycles and related health signals often want **low friction**: no extra app install, no new account paradigm—just a trusted surface they already open daily.
+In many committed relationships, a partner’s mood can vary depending on the monthly cycle phase. For the supporting partner (often male), this can feel confusing in the moment: “what’s going on, and how can I help?”
+
+Moon Cue App tracks the cycle phase and sends partner-facing information and guidance that helps the other partner understand what may be happening and respond with empathy. The goal is to reduce misunderstandings and arguments, strengthen communication, and build a supportive bond.
 
 ## Approach
 
@@ -26,9 +28,9 @@ People who track cycles and related health signals often want **low friction**: 
 ## Stack (reference)
 
 | Concern | Choice |
-|---------|--------|
+| --------- | -------- |
 | Messenger | Telegram Bot API + webhook |
-| HTTP / landing | Vercel (Next.js) |
+| HTTP / landing | Vercel (web hosting) |
 | Database | Supabase |
 | Billing | Stripe subscriptions |
 
