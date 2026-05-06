@@ -1,19 +1,24 @@
 # Project
 
-**Messenger-Native SaaS** — reference repository by Heartmade. It demonstrates subscription products whose primary UX lives in **Telegram** (or another messenger), with **Stripe** billing, **Supabase** data, and a lightweight **static landing** front door.
+*Documentation version: 3.*
 
-This project is developed as part of **Heartmade Studio**: https://github.com/heartmade-studio/
+**Messenger-Native SaaS** — Heartmade Studio reference repository. It showcases a modern blueprint for micro-SaaS products that replace traditional browser dashboards with native messenger UX (e.g. Telegram). The system is Edge-first and centers on an **Onboarding-first flow**.
 
-This file is the LLM entry point: factual, low marketing noise.
+## Core architecture stack
 
-## Core architecture
+- **UX / front-end:** Telegram Bot API (replaces web and mobile apps).
+- **Backend / compute:** Supabase Edge Functions (Deno) for low-latency event handling.
+- **Database:** Supabase (PostgreSQL).
+- **Subscriptions & payments:** Stripe (webhooks + hosted Checkout).
+- **Intelligence (AI composition):** Gemini API (Google AI) for dynamic creation of **personalized cues**.
+- **Observability:** PostHog (product analytics) and Sentry (error tracking on Edge).
 
-- **Landing**: static HTML/CSS (see `apps/landing/`) — redirects to a Stripe hosted checkout link.
-- **Billing**: Stripe Checkout (subscription mode) + webhooks → upsert rows in Supabase.
-- **Bot**: Telegram updates POST to `/api/webhooks/telegram`; replies via Bot API `sendMessage`.
-- **Data**: Postgres via Supabase; demo table `subscriptions` links `stripe_customer_id`, subscription status, and `telegram_chat_id`.
+## Main principles (philosophy)
 
-Heartmade uses this stack pattern for client work; **Moon Cue App** is documented as a case study in `docs/moon-cue-app-case-study.md` without exposing proprietary code.
+- **Low friction, high retention:** No passwords; no separate mobile app install.
+- **Onboarding-first flow:** User data and service setup happen through a guided conversation at launch (four steps), then a free trial starts (e.g. 14 days). Payments and checkout are handled by Stripe.
+
+This file is LLM-oriented context for the repository’s current architecture. Use these technical constraints when generating or extending features.
 
 ## Key docs
 

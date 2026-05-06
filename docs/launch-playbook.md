@@ -1,45 +1,48 @@
 # Launch playbook — Messenger-Native SaaS (Heartmade)
 
-Goal: turn this repository into **credible thought leadership** for Heartmade without overclaiming novelty.
+Goal: turn this repository into **credible thought leadership** for Heartmade, showcasing our expertise in **Edge-first architectures** and **AI-driven product flows**.
 
 ## Core narrative
 
-- **Claim**: opinionated **stack + delivery speed** for subscription products living in **messengers**.
-- **Do not claim**: inventing chat apps or Telegram; acknowledge Mini Apps and bot ecosystems openly.
+- **Claim:** opinionated **Serverless & Edge-first stack** for subscription products living in **messengers**. Low friction, high retention.
+- **Key differentiators:** Onboarding-First Flow, Deno Edge Functions, and Gemini AI integration.
 
 ## Assets
 
 | Asset | Channel |
-|-------|---------|
+| --- | --- |
 | This repo (`README.md`, `ARCHITECTURE.md`) | GitHub, README badges |
 | Case study (`docs/moon-cue-app-case-study.md`) | Blog, deck footnote |
 | Demo deploy | Link from posts |
 
+---
+
 ## Week 1 — credibility
 
-1. **GitHub**: public repo, crisp description, topics: `telegram`, `stripe`, `supabase`, `vercel`, `nextjs`, `saas`, `subscription`.
-2. **LinkedIn (PL + EN optional)**: founder-style post — problem → stack diagram → “we shipped **Moon Cue App** on this pattern.”
-3. **Short demo clip**: 30–45 s screen recording: `/start` → chat id → checkout (test mode) → `/status`.
+1. **GitHub:** public repo, crisp description, topics: `telegram`, `stripe`, `supabase`, `deno`, `edge-functions`, `gemini-api`, `posthog`, `sentry`, `saas`.
+2. **LinkedIn (PL + EN):** founder-style post — “Stop forcing users into web dashboards. We shifted to an Onboarding-First Flow in Telegram with Edge Functions + Gemini API. Here is the blueprint.”
+3. **Short demo clip:** 30–45 s screen recording: `/start` → 4-step bot onboarding → instant 14-day trial → AI-generated Cue.
+
+---
 
 ## Week 2 — reach
 
-1. **Show HN**: title pattern — “Show HN: Messenger-Native SaaS starter — Telegram + Stripe + Supabase.”
-2. **dev.to / Heartmade blog**: technical walkthrough with **one** Mermaid diagram from `ARCHITECTURE.md`.
-3. **Product Hunt**: submit the **starter** (tooling), not a private client codebase.
+1. **Show HN:** title pattern — “Show HN: Messenger-Native SaaS starter — Telegram + Edge Functions + Gemini AI + Stripe.”
+2. **dev.to / Heartmade blog:** technical walkthrough focusing on **Supabase Edge Functions (Deno)** and how to monitor the funnel with **PostHog**.
+3. **Product Hunt:** submit the **starter** (tooling).
+
+---
 
 ## Messaging guardrails
 
-- Use **Moon Cue App** consistently (not legacy naming).
-- Prefer **“reference architecture”** over **“new paradigm.”**
-- Disclose **limitations**: WhatsApp differs from Telegram; compliance varies by use case.
+- Use **Moon Cue App** consistently.
+- Prefer **“Edge-first blueprint”** over “new paradigm.”
+- Disclose **limitations:** Chat interface has constraints; observability (Sentry/PostHog) is crucial because you don't control the Telegram UI.
+
+---
 
 ## Metrics (lightweight)
 
 - GitHub stars / forks
-- Inbound messages referencing “messenger-native” or the repo URL
+- Inbound messages referencing “messenger-native” or “AI integration”
 - Consultancy leads attributed in CRM with source `content-github`
-
-## Optional next steps
-
-- One-page PDF “**Messenger-Native SaaS**” for outbound sales
-- Conference lightning talk (5 min): problem → diagram → Moon Cue App screenshot (sanitized)

@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Messenger-Native SaaS — Heartmade reference</title>
+    <title>Messenger-Native SaaS Blueprint</title>
     <meta
       name="description"
-      content="Subscription software delivered inside Telegram (messenger-native), with Stripe billing and Supabase as the system of record."
+      content="Low friction, High retention. Subscription software delivered inside Telegram, powered by Supabase Edge Functions and Gemini AI."
     />
     <link rel="stylesheet" href="./styles.css" />
   </head>
@@ -21,9 +21,9 @@
       </div>
 
       <nav class="nav" aria-label="Primary">
-        <a href="#what">What it is</a>
-        <a href="#case">Moon Cue App</a>
-        <a href="#how">How it works</a>
+        <a href="#philosophy">Philosophy</a>
+        <a href="#stack">Tech Stack</a>
+        <a href="#case">Case Study</a>
       </nav>
     </header>
 
@@ -32,101 +32,89 @@
         <div class="heroText">
           <p class="kicker">Messenger-Native SaaS</p>
           <h1>
-            Build subscription products where users already are: in Telegram (or
-            any messenger).
+            Low friction, High retention. Build SaaS where your users already are.
           </h1>
           <p class="lead">
-            Landing stays lightweight; billing stays standard (Stripe); your data
-            lives in Supabase.
+            Skip the traditional web dashboard. Deliver native UX in Telegram, powered by Supabase Edge Functions, Gemini AI, and Stripe.
           </p>
 
           <div class="ctaRow">
             <a
               class="button primary"
-              href="https://checkout.stripe.com/"
+              href="[https://t.me/YourBot](https://t.me/YourBot)"
               rel="noreferrer"
             >
-              Subscribe (Stripe)
+              Try Onboarding-First Flow
             </a>
-            <a class="button" href="#how">See the flow</a>
+            <a class="button" href="#stack">Explore Stack</a>
           </div>
 
           <p class="finePrint">
-            Replace the Stripe URL with your configured hosted checkout link
-            (Payment Link / Checkout redirect URL). This repo intentionally
-            ships only a static landing.
+            This repository is an open-source blueprint. The CTA above should link directly to your Telegram bot to start the frictionless trial and onboarding.
           </p>
         </div>
 
         <div class="heroCard" role="note" aria-label="Live product link">
-          <h2>Live product</h2>
+          <h2>Live Demo</h2>
           <p>
-            Try <strong>Moon Cue App</strong>:
-            <a href="https://trycue.pl" rel="noreferrer">https://trycue.pl</a>
+            See the architecture in action with <strong>Moon Cue App</strong>:
+            <a href="[https://trycue.pl](https://trycue.pl)" rel="noreferrer">[https://trycue.pl](https://trycue.pl)</a>
           </p>
           <p class="muted">
-            Reference narrative and architecture are described in the docs.
+            Includes Stripe subscriptions, Gemini AI cues, and Deno Edge logic.
           </p>
         </div>
       </section>
 
-      <section id="what" class="section">
-        <h2>What “messenger-native” means</h2>
+      <section id="philosophy" class="section">
+        <h2>The Onboarding-First Flow</h2>
         <div class="grid2">
           <div class="card">
             <h3>Traditional SaaS</h3>
             <ul>
-              <li>Browser dashboard</li>
-              <li>App installs (optional)</li>
-              <li>Separate UX surface</li>
+              <li>Heavy web dashboards</li>
+              <li>High drop-off on sign-up forms</li>
+              <li>Low email open rates</li>
+              <li>Friction before value</li>
             </ul>
           </div>
           <div class="card">
-            <h3>Messenger-Native SaaS</h3>
+            <h3>Messenger-Native</h3>
             <ul>
-              <li>Core UX in Telegram / WhatsApp</li>
-              <li>No new account paradigm</li>
-              <li>Billing via Stripe subscription</li>
+              <li>No apps to install, no passwords</li>
+              <li>Interactive chat onboarding</li>
+              <li>Instant 14-day trial activation</li>
+              <li>80%+ open rates for notifications</li>
             </ul>
           </div>
         </div>
+      </section>
+
+      <section id="stack" class="section">
+        <h2>Edge-first Architecture</h2>
+        <ol class="steps">
+          <li><strong>Supabase Edge Functions (Deno):</strong> Blazing fast webhook processing and business logic directly at the edge.</li>
+          <li><strong>Google Gemini API:</strong> Context-aware AI composition generating personalized "Cues" for users.</li>
+          <li><strong>Stripe Billing:</strong> Seamless transition from free trial to paid subscription via hosted checkout.</li>
+          <li><strong>PostHog & Sentry:</strong> Production-grade observability. Track funnel drop-offs and catch edge errors instantly.</li>
+        </ol>
       </section>
 
       <section id="case" class="section">
         <h2>Case study: Moon Cue App</h2>
         <p>
-          Moon Cue App supports partners by explaining what the cycle phase can
-          mean in everyday moments and helping the couple communicate with
-          empathy.
+          Moon Cue App uses this exact stack to support partners by generating AI-powered, empathetic insights delivered straight to Telegram.
         </p>
         <p>
-          Read: <a href="../../docs/moon-cue-app-case-study.md">docs</a>.
+          Read the full architecture narrative in our <a href="../../docs/moon-cue-app-case-study.md">docs</a>.
         </p>
-      </section>
-
-      <section id="how" class="section">
-        <h2>High-level flow</h2>
-        <ol class="steps">
-          <li>
-            Visitor lands on this page and starts checkout via the Stripe hosted link.
-          </li>
-          <li>
-            Stripe confirms subscription on your backend (not included in this static landing template).
-          </li>
-          <li>
-            Telegram bot uses your backend state (typically Supabase) to deliver reminders and guidance.
-          </li>
-        </ol>
       </section>
 
       <section class="section footerSection" aria-label="Footer">
         <p class="muted">
-          Heartmade reference starter. Docs are in this monorepo under
-          <code>docs/</code>; the static landing is under
-          <code>apps/landing/</code>.
+          Heartmade reference starter. Open-source under MIT License.
         </p>
       </section>
     </main>
   </body>
 </html>
-

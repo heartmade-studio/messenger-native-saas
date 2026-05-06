@@ -1,57 +1,75 @@
-# Messenger-Native SaaS
+# 🚀 Messenger-Native SaaS Blueprint
 
-**Reference stack by [Heartmade](https://heartmade.pl)** — subscription software that customers **use inside a messenger** (here: **Telegram**), not as a traditional installable app or as the primary web dashboard.
+**Low friction, high retention.** Build a production-ready, revenue-generating micro-SaaS that lives entirely inside a messenger—without a traditional browser dashboard.
 
-This project is developed as part of **Heartmade Studio** — https://github.com/heartmade-studio/
+The first application shipped in this model is **[Moon Cue](https://trycue.pl)**.
 
-Heartmade Studio ships **reference stacks and templates** like this repo; client production code lives in separate, private codebases.
+## 🧠 The philosophy: why “Messenger-Native”?
 
-This repository is intentionally **small and opinionated**.
+With traditional SaaS products you constantly fight for the user’s attention. Web apps see heavy drop-off at registration, and native mobile apps ask users to download another heavy binary.
 
-This repo is a **monorepo**: `apps/landing/` contains the static front door, and `docs/` contains the architecture, case study, and launch guidance.
+In the **Messenger-Native** model:
 
-Implementation shipped here is a **static landing page (HTML/CSS)** under `apps/landing/`.
-The **messenger-native architecture** (Stripe + Supabase + Telegram webhooks) is documented in `ARCHITECTURE.md` and `docs/` so you can integrate your own backend.
+- **No install:** The user already has the client app (Telegram).
+- **Native notifications:** Messenger message open rates are often 80–90%, compared with roughly 20% for email.
+- **Intimacy and attention:** Your product sits next to messages from family and friends, which builds trust and habitual use.
 
-It is **not** the production codebase of any client product. For a real-world narrative, see **[Moon Cue App](docs/moon-cue-app-case-study.md)** and the live site: **[trycue.pl](https://trycue.pl)**.
+## 🏗 Architecture
 
-## What “Messenger-Native SaaS” means
+The project is built around a **Serverless & Edge-first** architecture:
 
-| Traditional SaaS | Messenger-Native SaaS (this pattern) |
-| ------------------ | -------------------------------------- |
-| Web app + optional mobile app | Core UX in **Telegram / WhatsApp / …** |
-| User installs from App Store | User already has the messenger |
-| Session in browser | Session in chat + server-side state |
+```mermaid
+flowchart TD
+    U[Telegram user] -->|Messages / commands| TG[Telegram API]
+    TG -->|Webhook| EF[Edge Functions / Deno]
+    EF <-->|Read / write state| DB[(Supabase PostgreSQL)]
+    EF -->|AI prompts| GEM[Google Gemini API]
+    EF -->|Events / logs| OBS[PostHog & Sentry]
+    EF <-->|Billing| STR[Stripe API]
+```
 
-The UX thesis: **meet users where they already spend attention**, keep billing standard (Stripe), and keep data in Postgres (Supabase).
+## ✨ Key features
 
-## Documentation
+- **🤖 Onboarding-first flow:** Skip boring signup forms. The user clicks “Get started” on the landing page and lands in Telegram. There they go through an engaging four-step setup conversation (preferences, goals, etc.) and immediately get a 14-day trial—fully automated, zero friction at the start.
+- **⚡ Edge Functions (Deno):** Core logic (webhooks, dispatcher) runs at the edge via Supabase Edge Functions—fast response times, elastic scaling, and first-class TypeScript / Deno.
+- **🧠 AI composition:** LLM integration via **Gemini API** (Google AI) for advanced analysis and real-time, personalized, empathetic content and tips (“Cues”).
+- **💳 Billing (Stripe):** Smooth path from free trial to paid subscription. Stripe handles lifecycle webhooks.
+- **📊 Observability:** Production-ready from day one. Deno errors go straight to **Sentry**; funnel and behavior events (e.g. `onboarding_started`, `trial_activated`) are streamed live to **PostHog**.
 
-- [DESIGN.md](DESIGN.md) — design tokens and rules for the demo landing (UI agents).
+## 🚀 Quick start
 
-## Contents
+This repository uses the Supabase CLI to bootstrap the Deno Edge Functions architecture.
 
-| Path | Purpose |
-| ------ | --------- |
-| [apps/landing/](apps/landing/) | Static landing page (HTML/CSS) |
-| [ARCHITECTURE.md](ARCHITECTURE.md) | End-to-end reference flow and data flow |
-| [docs/moon-cue-app-case-study.md](docs/moon-cue-app-case-study.md) | Case study: **Moon Cue App** |
-| [docs/launch-playbook.md](docs/launch-playbook.md) | How to publish this narrative (HN, LinkedIn, PH, …) |
-| [docs/security-and-compliance.md](docs/security-and-compliance.md) | Webhooks, secrets, health data |
-| [DESIGN.md](DESIGN.md) | Minimal UI tokens for this template |
+1. **Link your Supabase project:**
 
-## Quick start (static landing)
+   ```bash
+   supabase link --project-ref <your-project-ref>
+   ```
 
-1. Deploy the folder [`apps/landing/`](apps/landing/) to any static host (or open `index.html` locally).
-2. Replace the Stripe button URL inside [`apps/landing/index.html`](apps/landing/index.html) with your configured hosted checkout link.
-3. Backend integration (Stripe webhooks + Telegram bot + Supabase) is described conceptually in [`ARCHITECTURE.md`](ARCHITECTURE.md) and `docs/security-and-compliance.md`.
+2. **Configure secrets (environment variables):**
 
-## Positioning (Heartmade)
+   ```bash
+   supabase secrets set TELEGRAM_BOT_TOKEN="your_token" \
+                        GEMINI_API_KEY="your_ai_key" \
+                        STRIPE_SECRET_KEY="sk_test_..."
+   ```
 
-Use this repo as **proof of a repeatable architecture**, not as “a new invention.” Messengers and bots are established; the story is **shipping subscription products faster** with a **coherent stack** and **Cursor/vibe-coding** velocity.
+3. **Build and deploy the webhook (Deno):**
 
-See [docs/launch-playbook.md](docs/launch-playbook.md) for channels and angles.
+   ```bash
+   supabase functions deploy telegram-webhook --no-verify-jwt
+   ```
 
-## License
+4. **Register the webhook with Telegram:**  
+   Send a simple GET/POST request using `setWebhook`, pointing at the public URL of your deployed Supabase function.
 
-MIT — see [LICENSE](LICENSE).
+## 📈 Observability (Sentry & PostHog)
+
+To keep full visibility into the funnel from day one, we ship solid observability defaults:
+
+- **Sentry:** Initialize the Deno SDK in the Edge Function (`import * as Sentry from "npm:@sentry/deno"`). Silent failures should not break onboarding.
+- **PostHog:** Instrument steps in the onboarding-first flow so you can see where users drop off during the conversation (e.g. question #3) before they finish the free trial.
+
+---
+
+*Documentation version: 3.*

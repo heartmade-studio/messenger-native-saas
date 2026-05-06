@@ -1,6 +1,6 @@
 # Case study: Moon Cue App
 
-**Moon Cue App** is a subscription product built by Heartmade using the **Messenger-Native SaaS** pattern: users interact primarily in **Telegram**, while **Stripe** handles billing and **Supabase** stores application state. Server routes run on **Vercel**.
+**Moon Cue App** is a subscription product built by Heartmade using the **Messenger-Native SaaS** pattern. Users interact primarily in **Telegram**, while **Stripe** handles billing, **Supabase Edge Functions** execute logic, and **Gemini API** generates personalized insights.
 
 Live product: **[https://trycue.pl](https://trycue.pl)**.
 
@@ -8,41 +8,38 @@ This file describes the **positioning and architecture narrative** for Heartmade
 
 ## Problem
 
-In many committed relationships, a partner’s mood can vary depending on the monthly cycle phase. For the supporting partner (often male), this can feel confusing in the moment: “what’s going on, and how can I help?”
+In many committed relationships, a partner’s mood can vary depending on the monthly cycle phase. For the supporting partner (often male), this can feel confusing.
 
-Moon Cue App tracks the cycle phase and sends partner-facing information and guidance that helps the other partner understand what may be happening and respond with empathy. The goal is to reduce misunderstandings and arguments, strengthen communication, and build a supportive bond.
+Moon Cue App tracks the cycle phase and sends partner-facing information ("Cues"). The goal is to reduce misunderstandings and build a supportive bond.
 
 ## Approach
 
-- **Primary UX**: conversational / command-driven flows inside **Telegram** (and room to add Mini App UI later).
-- **Acquisition**: landing page with clear value proposition and Stripe Checkout for subscriptions.
-- **Data**: structured rows in **Supabase** (Postgres), with server-side access only for privileged operations.
-- **Delivery speed**: implementation accelerated with **Cursor** and “vibe coding,” then hardened where billing and privacy matter.
+- **Onboarding-First Flow**: Instead of a web form, users click "Start" and complete a 4-step interactive onboarding inside Telegram, immediately receiving a 14-day free trial.
+- **AI Composition**: We leverage **Google Gemini API** to analyze cycle states and generate highly empathetic, personalized guidance in real-time.
+- **Edge Compute**: Webhooks and cron jobs (Dispatcher) run on **Supabase Edge Functions (Deno)**, ensuring zero cold starts and fast responses to Telegram.
+- **Observability**: **PostHog** tracks funnel conversion during the chat onboarding, while **Sentry** catches any Deno errors.
 
 ## Why messenger-first
 
-- **Distribution**: the messenger is already installed; onboarding reduces to “subscribe → chat.”
-- **Habit surface**: notifications and threads match reminder-style products.
-- **Separation of concerns**: Stripe remains the system of record for **paid entitlement**; the bot enforces access based on server-side state.
+- **Distribution**: No app to install. Onboarding reduces to "start chat -> trial."
+- **Habit surface**: 80%+ open rates for notifications.
+- **Frictionless**: Stripe handles the eventual upgrade to paid, but the initial value delivery is immediate.
 
 ## Stack (reference)
 
 | Concern | Choice |
 | --------- | -------- |
-| Messenger | Telegram Bot API + webhook |
-| HTTP / landing | Vercel (web hosting) |
-| Database | Supabase |
+| UX / Messenger | Telegram Bot API |
+| Compute / Logic | Supabase Edge Functions (Deno) |
+| AI / LLM | Google Gemini API |
+| Database | Supabase (PostgreSQL) |
 | Billing | Stripe subscriptions |
-
-## Risks and mitigations
-
-- **Sensitive category**: health-adjacent products require careful privacy copy, data minimization, retention policy, and security reviews—see [security-and-compliance.md](security-and-compliance.md).
-- **Platform dependence**: messenger policies and APIs change; design abstractions so **entitlement** and **UX** can migrate (e.g. WhatsApp Business API) without rewriting billing.
+| Observability | PostHog & Sentry |
 
 ## Relation to this repository
 
-The code in **this** repo is a **neutral template** (demo landing + webhooks). **Moon Cue App** is the product story; reuse the same architectural ideas, not a copy-paste of production code.
+The code in **this** repo is a **neutral template**. **Moon Cue App** is the product story; reuse the same architectural ideas—like Deno webhooks and Gemini integration—to build your own.
 
 ## Heartmade takeaway
 
-**Moon Cue App** demonstrates that Heartmade can ship **modern subscription software** with **AI-accelerated development** and a deliberate **“where users already are”** UX strategy—usable as sales collateral alongside this open reference implementation.
+**Moon Cue App** demonstrates that Heartmade can ship **modern, AI-powered subscription software** with a deliberate **"where users already are"** UX strategy.
