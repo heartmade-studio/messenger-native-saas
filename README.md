@@ -2,6 +2,10 @@
 
 **Reference stack by [Heartmade](https://heartmade.pl)** — subscription software that customers **use inside a messenger** (here: **Telegram**), not as a traditional installable app or as the primary web dashboard.
 
+This project is developed as part of **Heartmade Studio** — https://github.com/heartmade-studio/
+
+Heartmade Studio ships **reference stacks and templates** like this repo; client production code lives in separate, private codebases.
+
 This repository is intentionally **small and opinionated**.
 
 This repo is a **monorepo**: `apps/landing/` contains the static front door, and `docs/` contains the architecture, case study, and launch guidance.

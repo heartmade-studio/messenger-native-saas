@@ -2,6 +2,8 @@
 
 **Messenger-Native SaaS** — reference repository by Heartmade. It demonstrates subscription products whose primary UX lives in **Telegram** (or another messenger), with **Stripe** billing, **Supabase** data, and a lightweight **static landing** front door.
 
+This project is developed as part of **Heartmade Studio**: https://github.com/heartmade-studio/
+
 This file is the LLM entry point: factual, low marketing noise.
 
 ## Core architecture
