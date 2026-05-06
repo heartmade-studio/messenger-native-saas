@@ -1,6 +1,6 @@
 # Project
 
-*Documentation version: 3.*
+*Documentation **v1.3** — MAJOR.MINOR (see README.md footer).*
 
 **Messenger-Native SaaS** — Heartmade Studio reference repository. It showcases a modern blueprint for micro-SaaS products that replace traditional browser dashboards with native messenger UX (e.g. Telegram). The system is Edge-first and centers on an **Onboarding-first flow**.
 

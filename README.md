@@ -72,4 +72,4 @@ To keep full visibility into the funnel from day one, we ship solid observabilit
 
 ---
 
-*Documentation version: 3.*
+*Documentation **v1.3** — schema: `MAJOR.MINOR`; bump **MAJOR** for breaking or structural rewrites, **MINOR** for substantive edits that keep the same doc contract.*
