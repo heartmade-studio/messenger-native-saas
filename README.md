@@ -4,6 +4,20 @@
 
 The first application shipped in this model is **[Moon Cue](https://trycue.pl)**.
 
+## Authorship
+
+The **Messenger-Native SaaS** concept and this reference blueprint were created by **[Heartmade Studio](https://github.com/heartmade-studio)** — the product studio of **[Heartmade](https://heartmade.pl)**, run by **[Paweł Jurewicz](https://github.com/pawel-jurewicz-heartmade)**.
+
+| | |
+| --- | --- |
+| **Studio (GitHub)** | [github.com/heartmade-studio](https://github.com/heartmade-studio) |
+| **Founder** | [Paweł Jurewicz](https://github.com/pawel-jurewicz-heartmade) |
+| **This repository** | [heartmade-studio/messenger-native-saas](https://github.com/heartmade-studio/messenger-native-saas) |
+| **First app in this model** | [Moon Cue](https://trycue.pl) |
+| **License** | [MIT](LICENSE) — Copyright © 2026 Heartmade |
+
+This repository is an open-source reference for architecture and UX patterns; production code for specific products may live in separate repositories.
+
 ## 🧠 The philosophy: why “Messenger-Native”?
 
 With traditional SaaS products you constantly fight for the user’s attention. Web apps see heavy drop-off at registration, and native mobile apps ask users to download another heavy binary.
@@ -72,4 +86,4 @@ To keep full visibility into the funnel from day one, we ship solid observabilit
 
 ---
 
-*Documentation **v1.3** — schema: `MAJOR.MINOR`; bump **MAJOR** for breaking or structural rewrites, **MINOR** for substantive edits that keep the same doc contract.*
+*Documentation **v1.4** — schema: `MAJOR.MINOR`; bump **MAJOR** for breaking or structural rewrites, **MINOR** for substantive edits that keep the same doc contract.*

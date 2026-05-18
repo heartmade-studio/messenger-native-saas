@@ -1,0 +1,11 @@
+---
+description: English-first communication and documentation; Polish for client-facing surfaces
+alwaysApply: true
+---
+
+# Language policy (messenger-native-saas)
+
+See the same policy in the parent workspace: `Heartmade-internal/.cursor/rules/english-primary-language.mdc`.
+
+- **English:** Cursor conversation, README, `docs/**`, `llms.txt`, and all internal technical notes in this repo.
+- **Polish:** client websites, app UI, and localized product copy only — not mixed into English technical docs.
