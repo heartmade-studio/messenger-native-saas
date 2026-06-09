@@ -36,4 +36,4 @@ sequenceDiagram
   EF->>T: Confirmation and 14-day trial activation
 ```
 
-*Documentation **v1.3** — same MAJOR.MINOR rules as the footer in `README.md`.*
+*Documentation **v1.4** — same MAJOR.MINOR rules as the footer in `README.md`.*

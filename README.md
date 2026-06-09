@@ -2,7 +2,7 @@
 
 **Low friction, high retention.** Build a production-ready, revenue-generating micro-SaaS that lives entirely inside a messenger—without a traditional browser dashboard.
 
-The first application shipped in this model is **[Moon Cue](https://trycue.pl)**.
+The first application shipped in this model is **[MoonQ](https://moonq.app)** — a Telegram bot that sends a man one daily message about his partner's cycle phase and one concrete action.
 
 ## Authorship
 
@@ -13,7 +13,7 @@ The **Messenger-Native SaaS** concept and this reference blueprint were created 
 | **Studio (GitHub)** | [github.com/heartmade-studio](https://github.com/heartmade-studio) |
 | **Founder** | [Paweł Jurewicz](https://github.com/pawel-jurewicz-heartmade) |
 | **This repository** | [heartmade-studio/messenger-native-saas](https://github.com/heartmade-studio/messenger-native-saas) |
-| **First app in this model** | [Moon Cue](https://trycue.pl) |
+| **First app in this model** | [MoonQ](https://moonq.app) |
 | **License** | [MIT](LICENSE) — Copyright © 2026 Heartmade |
 
 This repository is an open-source reference for architecture and UX patterns; production code for specific products may live in separate repositories.
@@ -46,7 +46,7 @@ flowchart TD
 
 - **🤖 Onboarding-first flow:** Skip boring signup forms. The user clicks “Get started” on the landing page and lands in Telegram. There they go through an engaging four-step setup conversation (preferences, goals, etc.) and immediately get a 14-day trial—fully automated, zero friction at the start.
 - **⚡ Edge Functions (Deno):** Core logic (webhooks, dispatcher) runs at the edge via Supabase Edge Functions—fast response times, elastic scaling, and first-class TypeScript / Deno.
-- **🧠 AI composition:** LLM integration via **Gemini API** (Google AI) for advanced analysis and real-time, personalized, empathetic content and tips (“Cues”).
+- **🧠 AI composition:** LLM integration via **Gemini API** (Google AI) for real-time, personalized, empathetic content (“Cues”). The recommended pattern keeps core/business logic **deterministic** and uses the LLM only for the personalization layer — in MoonQ the cycle math is plain TypeScript, the AI layer is reserved for paying users, and the free trial runs on a manually reviewed, no-AI content bank.
 - **💳 Billing (Stripe):** Smooth path from free trial to paid subscription. Stripe handles lifecycle webhooks.
 - **📊 Observability:** Production-ready from day one. Deno errors go straight to **Sentry**; funnel and behavior events (e.g. `onboarding_started`, `trial_activated`) are streamed live to **PostHog**.
 
@@ -86,4 +86,4 @@ To keep full visibility into the funnel from day one, we ship solid observabilit
 
 ---
 
-*Documentation **v1.4** — schema: `MAJOR.MINOR`; bump **MAJOR** for breaking or structural rewrites, **MINOR** for substantive edits that keep the same doc contract.*
+*Documentation **v1.5** — schema: `MAJOR.MINOR`; bump **MAJOR** for breaking or structural rewrites, **MINOR** for substantive edits that keep the same doc contract.*

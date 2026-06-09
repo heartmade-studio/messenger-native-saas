@@ -1,8 +1,10 @@
 # Project
 
-*Documentation **v1.3** — MAJOR.MINOR (see README.md footer).*
+*Documentation **v1.4** — MAJOR.MINOR (see README.md footer).*
 
 **Messenger-Native SaaS** — Heartmade Studio reference repository. It showcases a modern blueprint for micro-SaaS products that replace traditional browser dashboards with native messenger UX (e.g. Telegram). The system is Edge-first and centers on an **Onboarding-first flow**.
+
+The reference implementation is **MoonQ** ([moonq.app](https://moonq.app)) — a Telegram bot that sends a man one daily message about his partner's menstrual-cycle phase and one concrete action. See `docs/moonq-case-study.md`.
 
 ## Core architecture stack
 
@@ -10,7 +12,7 @@
 - **Backend / compute:** Supabase Edge Functions (Deno) for low-latency event handling.
 - **Database:** Supabase (PostgreSQL).
 - **Subscriptions & payments:** Stripe (webhooks + hosted Checkout).
-- **Intelligence (AI composition):** Gemini API (Google AI) for dynamic creation of **personalized cues**.
+- **Intelligence (AI composition):** Gemini API (Google AI) for **personalized cues**, layered on top of deterministic business logic and reserved for paying users. In MoonQ the cycle phase is computed by plain TypeScript (never an LLM); the free trial serves a manually reviewed, no-AI content bank.
 - **Observability:** PostHog (product analytics) and Sentry (error tracking on Edge).
 
 ## Main principles (philosophy)
@@ -26,6 +28,6 @@ This file is LLM-oriented context for the repository’s current architecture. U
 |------|---------|
 | README.md | Setup, deploy, positioning |
 | ARCHITECTURE.md | Diagrams and sequences |
-| docs/moon-cue-app-case-study.md | Product narrative (Moon Cue App) |
+| docs/moonq-case-study.md | Product narrative — **MoonQ** |
 | docs/security-and-compliance.md | Webhooks, secrets, sensitive data |
 | DESIGN.md | Landing page tokens only |

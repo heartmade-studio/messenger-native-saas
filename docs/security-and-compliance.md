@@ -30,9 +30,14 @@ This template handles **payments** and **personal identifiers** (Telegram chat i
 
 ## Sensitive domains (e.g. health)
 
-Products such as **Moon Cue App** may fall under **health data** regulations depending on jurisdiction and what you store.
+Products such as **MoonQ** may touch **health-adjacent data** depending on jurisdiction and what you store. MoonQ's posture is **data minimization by design**:
 
-Minimum bar:
+- The user enters a **label for his partner** (her first name or a nickname — his choice) plus **two cycle dates**. That is the entire partner-related footprint — no account, contact details, or symptom logs about her.
+- **Consent-by-design:** onboarding includes an "ask her" script; the product is not covert.
+- **Row Level Security on every table**, the **service-role key server-side only**, data hosted in the **EU region**.
+- MoonQ is **informational, not medical advice**.
+
+Minimum bar (any product in this model):
 
 - Data minimization (store only what you need).
 - Clear **privacy policy** and retention/deletion story.
