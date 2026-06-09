@@ -36,10 +36,12 @@ This is the "vibe-coding" discipline made visible: the risky part (a woman's bod
 
 ## Trial vs. paid (a deliberate cost + trust decision)
 
-- **Trial (14 days):** the user receives advice straight from a **manually reviewed seed bank** for the current phase — a simple, deterministic lookup, **no AI**. Cheap to run, and every word has been read by a human before it ships.
-- **Paid:** the same evidence base, **personalized by Gemini** (the partner's name, lighter or warmer tone) on top of the deterministic phase.
+There is **no free tier**. Everyone starts on the same **14-day free trial** (no card); to keep going after it, the user moves to a paid plan (Monthly/Annual) or buys Lifetime. What changes across that line is *how each message is composed*:
 
-The split keeps unit economics sane (no LLM spend on people who haven't paid) and de-risks quality (AI never improvises the trial experience).
+- **During the trial (14 days):** advice comes straight from a **manually reviewed seed bank** for the current phase — a simple, deterministic lookup, **no AI**. Cheap to run, and every word has been read by a human before it ships.
+- **On a paid plan:** the same evidence base, **personalized by Gemini** (the partner's name, lighter or warmer tone) on top of the deterministic phase.
+
+The split keeps unit economics sane (no LLM spend during the free trial) and de-risks quality (AI never improvises the trial experience).
 
 ## Activation contract (UX)
 

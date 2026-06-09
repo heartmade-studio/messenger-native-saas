@@ -46,7 +46,7 @@ flowchart TD
 
 - **🤖 Onboarding-first flow:** Skip boring signup forms. The user clicks “Get started” on the landing page and lands in Telegram. There they go through an engaging four-step setup conversation (preferences, goals, etc.) and immediately get a 14-day trial—fully automated, zero friction at the start.
 - **⚡ Edge Functions (Deno):** Core logic (webhooks, dispatcher) runs at the edge via Supabase Edge Functions—fast response times, elastic scaling, and first-class TypeScript / Deno.
-- **🧠 AI composition:** LLM integration via **Gemini API** (Google AI) for real-time, personalized, empathetic content (“Cues”). The recommended pattern keeps core/business logic **deterministic** and uses the LLM only for the personalization layer — in MoonQ the cycle math is plain TypeScript, the AI layer is reserved for paying users, and the free trial runs on a manually reviewed, no-AI content bank.
+- **🧠 AI composition:** LLM integration via **Gemini API** (Google AI) for real-time, personalized, empathetic content (“Cues”). The recommended pattern keeps core/business logic **deterministic** and uses the LLM only for the personalization layer — in MoonQ the cycle math is plain TypeScript, AI is reserved for paid plans, and the **14-day free trial** runs on a manually reviewed, no-AI content bank — there is no free tier.
 - **💳 Billing (Stripe):** Smooth path from free trial to paid subscription. Stripe handles lifecycle webhooks.
 - **📊 Observability:** Production-ready from day one. Deno errors go straight to **Sentry**; funnel and behavior events (e.g. `onboarding_started`, `trial_activated`) are streamed live to **PostHog**.
 
@@ -86,4 +86,4 @@ To keep full visibility into the funnel from day one, we ship solid observabilit
 
 ---
 
-*Documentation **v1.5** — schema: `MAJOR.MINOR`; bump **MAJOR** for breaking or structural rewrites, **MINOR** for substantive edits that keep the same doc contract.*
+*Documentation **v1.6** — schema: `MAJOR.MINOR`; bump **MAJOR** for breaking or structural rewrites, **MINOR** for substantive edits that keep the same doc contract.*

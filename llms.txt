@@ -1,6 +1,6 @@
 # Project
 
-*Documentation **v1.4** — MAJOR.MINOR (see README.md footer).*
+*Documentation **v1.5** — MAJOR.MINOR (see README.md footer).*
 
 **Messenger-Native SaaS** — Heartmade Studio reference repository. It showcases a modern blueprint for micro-SaaS products that replace traditional browser dashboards with native messenger UX (e.g. Telegram). The system is Edge-first and centers on an **Onboarding-first flow**.
 
@@ -12,7 +12,7 @@ The reference implementation is **MoonQ** ([moonq.app](https://moonq.app)) — a
 - **Backend / compute:** Supabase Edge Functions (Deno) for low-latency event handling.
 - **Database:** Supabase (PostgreSQL).
 - **Subscriptions & payments:** Stripe (webhooks + hosted Checkout).
-- **Intelligence (AI composition):** Gemini API (Google AI) for **personalized cues**, layered on top of deterministic business logic and reserved for paying users. In MoonQ the cycle phase is computed by plain TypeScript (never an LLM); the free trial serves a manually reviewed, no-AI content bank.
+- **Intelligence (AI composition):** Gemini API (Google AI) for **personalized cues**, layered on top of deterministic business logic and reserved for paid plans. In MoonQ the cycle phase is computed by plain TypeScript (never an LLM); the 14-day free trial serves a manually reviewed, no-AI content bank, and there is no free tier.
 - **Observability:** PostHog (product analytics) and Sentry (error tracking on Edge).
 
 ## Main principles (philosophy)
