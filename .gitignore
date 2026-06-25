@@ -27,3 +27,10 @@ coverage/
 
 # Build output (if any)
 /dist/
+
+# Supabase local state
+supabase/.branches/
+supabase/.temp/
+
+# Internal build tracker (not part of the shipped starter)
+PROGRESS.md

@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: MoonQ — the reference product
+    url: https://moonq.app
+    about: See the Messenger-Native SaaS pattern running in production.
+  - name: Heartmade Studio
+    url: https://github.com/heartmade-studio
+    about: The studio behind this starter.
