@@ -184,6 +184,10 @@ Each one is inert until you set its env vars (see [.env.example](.env.example));
 - **Analytics (PostHog)** — `POSTHOG_API_KEY`. Mirrors the `events` funnel into PostHog. No-op without a key.
 - **Errors (Sentry)** — `SENTRY_DSN`. Reports unhandled errors. No-op without a DSN.
 
+## Landing page (optional)
+
+The bot needs no web host — Telegram talks to the Supabase function directly. The static page in `apps/landing/` is optional (checkout / marketing links) and can go on any static host: **Cloudflare Pages** (what MoonQ uses), Vercel, Netlify, or GitHub Pages.
+
 ## Cost
 
 Everything here has a usable free tier, so you can run the whole stack at **$0 until you have paying users**: Telegram is free, Supabase has a free tier (Postgres + Edge Functions), Gemini has a free tier, PostHog and Sentry have free tiers, and Stripe only takes a cut per transaction.
