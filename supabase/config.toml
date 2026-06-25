@@ -1,0 +1,62 @@
+# Supabase local stack config for the Messenger-Native SaaS starter.
+# `supabase start` reads this to spin up Postgres + the Edge Runtime locally.
+project_id = "messenger-native-saas"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+shadow_port = 54320
+major_version = 17
+
+[studio]
+enabled = true
+port = 54323
+api_url = "http://localhost:54321"
+
+# This product lives in Telegram, not in a browser dashboard, so Supabase Auth
+# and Storage are off by default. The bot identifies users by Telegram chat id.
+[auth]
+enabled = false
+
+[storage]
+enabled = false
+
+[edge_runtime]
+enabled = true
+policy = "oneshot"
+inspector_port = 8083
+
+# When running `supabase functions serve --env-file .env`, the values below are
+# pulled from the host environment. Keep this list in sync with .env.example.
+[edge_runtime.secrets]
+SUPABASE_URL = "env(SUPABASE_URL)"
+SUPABASE_SERVICE_ROLE_KEY = "env(SUPABASE_SERVICE_ROLE_KEY)"
+TELEGRAM_BOT_TOKEN = "env(TELEGRAM_BOT_TOKEN)"
+TELEGRAM_WEBHOOK_SECRET = "env(TELEGRAM_WEBHOOK_SECRET)"
+TELEGRAM_BOT_USERNAME = "env(TELEGRAM_BOT_USERNAME)"
+TRIAL_DAYS = "env(TRIAL_DAYS)"
+GEMINI_API_KEY = "env(GEMINI_API_KEY)"
+GEMINI_MODEL = "env(GEMINI_MODEL)"
+STRIPE_SECRET_KEY = "env(STRIPE_SECRET_KEY)"
+STRIPE_PRICE_ID = "env(STRIPE_PRICE_ID)"
+STRIPE_WEBHOOK_SECRET = "env(STRIPE_WEBHOOK_SECRET)"
+POSTHOG_API_KEY = "env(POSTHOG_API_KEY)"
+POSTHOG_HOST = "env(POSTHOG_HOST)"
+SENTRY_DSN = "env(SENTRY_DSN)"
+SENTRY_ENVIRONMENT = "env(SENTRY_ENVIRONMENT)"
+
+# Telegram cannot attach Supabase JWT/apikey headers to its webhook calls, so
+# the webhook function must skip JWT verification and authenticate the request
+# itself via the X-Telegram-Bot-Api-Secret-Token header (see telegram-webhook).
+[functions.telegram-webhook]
+verify_jwt = false
+
+# Stripe signs its webhooks with a shared secret, not a Supabase JWT.
+[functions.stripe-webhook]
+verify_jwt = false
