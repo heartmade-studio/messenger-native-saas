@@ -2,7 +2,7 @@
 
 *Documentation **v1.5** — MAJOR.MINOR (see README.md footer).*
 
-**Messenger-Native SaaS** — Heartmade Studio reference repository. It showcases a modern blueprint for micro-SaaS products that replace traditional browser dashboards with native messenger UX (e.g. Telegram). The system is Edge-first and centers on an **Onboarding-first flow**.
+**Messenger-Native SaaS** — Heartmade Studio reference repository. It is a **runnable, forkable starter kit** for micro-SaaS products that replace traditional browser dashboards with native messenger UX (e.g. Telegram). The system is Edge-first and centers on an **Onboarding-first flow**. The core (Telegram webhook + Supabase Postgres + a Deno Edge Function with a pure onboarding state machine) runs end-to-end; AI/billing/observability are optional adapters that degrade gracefully without env.
 
 The reference implementation is **MoonQ** ([moonq.app](https://moonq.app)) — a Telegram bot that sends a man one daily message about his partner's menstrual-cycle phase and one concrete action. See `docs/moonq-case-study.md`.
 
@@ -26,8 +26,12 @@ This file is LLM-oriented context for the repository’s current architecture. U
 
 | Path | Content |
 |------|---------|
-| README.md | Setup, deploy, positioning |
+| README.md | Method, Quick start, deploy, positioning |
 | ARCHITECTURE.md | Diagrams and sequences |
+| supabase/functions/telegram-webhook/ | Core Edge Function: dispatcher + onboarding state machine |
+| supabase/functions/_shared/ | Adapters: ai (Gemini+stub), billing (Stripe skeleton), analytics (PostHog/Sentry) |
+| supabase/migrations/ | Postgres schema (users + events) |
+| docs/billing-and-ai.md | What's real vs TODO in the Stripe/Gemini adapters |
 | docs/moonq-case-study.md | Product narrative — **MoonQ** |
 | docs/security-and-compliance.md | Webhooks, secrets, sensitive data |
 | DESIGN.md | Landing page tokens only |

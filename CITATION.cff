@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+title: "Messenger-Native SaaS — starter kit"
+message: "If you build on this pattern, please cite it and link back."
+type: software
+authors:
+  - given-names: Paweł
+    family-names: Jurewicz
+    affiliation: Heartmade Studio
+repository-code: "https://github.com/heartmade-studio/messenger-native-saas"
+url: "https://moonq.app"
+abstract: >-
+  A forkable, runnable starter for Messenger-Native SaaS: subscription products
+  whose entire interface lives inside a chat app. Telegram Bot API on Supabase
+  Edge Functions (Deno) and Postgres, with optional Gemini, Stripe, PostHog and
+  Sentry adapters. Centered on an onboarding-first conversation that activates a
+  free trial without a web form or card.
+keywords:
+  - telegram
+  - supabase
+  - deno
+  - edge-functions
+  - saas
+  - messenger-native
+  - stripe
+  - gemini
+license: MIT
+version: 1.0.0
+date-released: "2026-06-25"

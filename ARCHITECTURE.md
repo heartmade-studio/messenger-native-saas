@@ -1,39 +1,50 @@
 # Architecture — Messenger-Native SaaS
 
-This technical document describes the **reference flow and Edge-first architecture**.
+This document describes the **reference flow and Edge-first architecture** as implemented by the starter in this repository.
 
 ## Main system components (tech stack)
 
-| Layer | Technology & role |
-| ----- | ---------------- |
-| **UX & interface** | **Telegram** — Primary user interface. This is where the four-step “Onboarding-First Flow” runs. |
-| **Data & state** | **Supabase (PostgreSQL)** — Auth via `chat_id`, user profiles, and subscription assignment. |
-| **Logic (compute)** | **Supabase Edge Functions (Deno)** — Fast, serverless handlers for Telegram traffic (webhooks) and cron jobs (dispatcher). |
-| **AI engine** | **Gemini API** — Called from Edge Functions to compose personalized content and assist the user. |
-| **Payments** | **Stripe** — Trial period (14 days) and recurring billing (Checkout + webhooks). |
-| **Observability** | **PostHog & Sentry** — Event analytics (PostHog) for the bot funnel and error tracking (Sentry) for Deno. |
+| Layer | Technology & role | In v1 |
+| ----- | ---------------- | --- |
+| **UX & interface** | **Telegram** — the only user interface. This is where the four-step onboarding-first flow runs. | ✅ core |
+| **Data & state** | **Supabase (Postgres)** — users keyed by `telegram_id`, plus an append-only `events` funnel log. | ✅ core |
+| **Logic (compute)** | **Supabase Edge Functions (Deno)** — `telegram-webhook` handles every update; a pure state machine drives onboarding. | ✅ core |
+| **AI engine** | **Gemini API** — called to personalize the wording of messages, never the business logic. | optional adapter (stub fallback) |
+| **Payments** | **Stripe** — checkout link + a lifecycle-webhook skeleton. | optional skeleton |
+| **Observability** | **PostHog & Sentry** — funnel events and edge error tracking. | optional, no-op without env |
 
-## Sequence — Onboarding-first flow
+The core (Telegram + Postgres + the Deno function) runs on its own; every other layer is an optional adapter that degrades gracefully.
 
-The user does not create an account in the traditional way. Authorization and record creation happen seamlessly during the conversation.
+## Sequence — onboarding-first flow
+
+The user never fills a signup form. Their record is created and the trial is activated entirely through the conversation.
 
 ```mermaid
 sequenceDiagram
   participant U as User (Telegram)
   participant T as Telegram API
-  participant EF as Edge Function (Deno)
-  participant AI as Gemini API
-  participant DB as Supabase DB
+  participant EF as telegram-webhook (Deno)
+  participant DB as Supabase Postgres
 
   U->>T: /start
   T->>EF: Webhook update (JSON)
-  EF->>DB: Create empty profile with telegram_chat_id
-  EF->>T: Onboarding question 1 of 4
-  U->>T: User reply
-  T->>EF: Webhook update (JSON)
-  EF->>AI: (Optional) Intent classification with Gemini
-  EF->>DB: Save preferences
-  EF->>T: Confirmation and 14-day trial activation
+  EF->>DB: Create user (status = onboarding), record onboarding_started
+  EF->>T: Step 1 of 4
+  loop steps 1..4
+    U->>T: Answer
+    T->>EF: Webhook update (JSON)
+    EF->>EF: advanceOnboarding(state, input)  — pure state machine
+    EF->>DB: Persist onboarding state
+    EF->>T: Next prompt (or validation error)
+  end
+  EF->>DB: status = trialing, set trial_ends_at, record trial_activated
+  EF->>T: Confirmation + first nudge
 ```
 
-*Documentation **v1.4** — same MAJOR.MINOR rules as the footer in `README.md`.*
+## Why a pure state machine
+
+`onboarding.ts` is a pure reducer — `advance(state, input) → { state, reply, activated }` — with no database, network, or clock inside it. The dispatcher persists the returned state and performs side effects. That separation is what makes the onboarding logic exhaustively unit-testable without any infrastructure, and is the discipline behind principle #6 (*deterministic core, AI at the edges*) in the [README](README.md).
+
+---
+
+*Docs version **2.0** — same `MAJOR.MINOR` rules as the footer in `README.md`.*
