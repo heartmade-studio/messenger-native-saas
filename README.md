@@ -1,6 +1,6 @@
 # Messenger-Native SaaS — starter kit
 
-> **Messenger-Native SaaS** is a subscription product whose entire interface lives inside a chat app the user already has: nothing to install, the conversation *is* the UI, and the messenger's own notifications carry retention.
+> **Messenger-Native SaaS** is a subscription product that lives entirely inside a chat app the user already has — nothing to install, the conversation *is* the UI, and the messenger's own notifications do the retention.
 
 This repository is a **forkable, runnable starter**. Clone it, follow the Quick start, and you have a working Telegram bot — onboarding-first conversation, 14-day trial activation, Postgres persistence — running on the local stack in about ten minutes. The reference product built on this pattern is **[MoonQ](https://moonq.app)**.
 
@@ -200,11 +200,6 @@ This template handles payments and personal identifiers. Read [docs/security-and
 - Website: [heartmade.pl](https://heartmade.pl)
 - LinkedIn: <!-- TODO: add your LinkedIn URL -->
 - First product on this pattern: [MoonQ](https://moonq.app)
-
-### Why I built this
-
-<!-- TODO (Paweł, your voice): a few sentences on why you moved off web dashboards to a
-     messenger-native model, what MoonQ taught you, and who this starter is for. -->
 
 ## Attribution
 
