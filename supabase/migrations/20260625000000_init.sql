@@ -66,3 +66,13 @@ create trigger users_set_updated_at
 -- denied by default — a safe baseline you extend when you add user-facing reads.
 alter table public.users enable row level security;
 alter table public.events enable row level security;
+
+-- =========================================================================
+-- Grants
+-- =========================================================================
+-- service_role bypasses RLS but still needs table/sequence privileges. We grant
+-- ONLY service_role (the bot) — anon / authenticated get nothing, so the public
+-- API cannot read user data even if RLS were later relaxed.
+grant all privileges on public.users to service_role;
+grant all privileges on public.events to service_role;
+grant usage, select on all sequences in schema public to service_role;
