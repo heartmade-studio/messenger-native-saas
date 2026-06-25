@@ -6,7 +6,10 @@ This repository is a **forkable, runnable starter**. Clone it, follow the Quick 
 
 The stack: **Telegram Bot API → Supabase Edge Functions (Deno/TypeScript) → Supabase Postgres**, with **Gemini** (AI), **Stripe** (billing), and **PostHog + Sentry** (observability) as clean, optional adapters that degrade gracefully when you haven't configured them yet.
 
-<!-- TODO: add an onboarding demo GIF here (the /start → 4-step setup → trial activation flow). -->
+<p align="center">
+  <img src="docs/assets/onboarding-demo.gif" alt="Onboarding demo: open the chat, answer a few questions, the trial activates" width="262">
+</p>
+<p align="center"><em><a href="https://moonq.app">MoonQ</a>, the reference product, running the pattern — onboarding-first, entirely in Telegram.</em></p>
 
 ---
 
