@@ -1,6 +1,6 @@
 # Messenger-Native SaaS — starter kit
 
-> **Messenger-Native SaaS** is a subscription product that lives entirely inside a chat app the user already has — nothing to install, the conversation *is* the UI, and the messenger's own notifications do the retention.
+> **Messenger-Native SaaS**: when the product's job is to deliver *information*, you don't ship an app to install or a dashboard to log into — you let it live in the messenger the user already checks. Conversation as UI, push built in.
 
 This repository is a **forkable, runnable starter**. Clone it, follow the Quick start, and you have a working Telegram bot — onboarding-first conversation, 14-day trial activation, Postgres persistence — running on the local stack in about ten minutes. The reference product built on this pattern is **[MoonQ](https://moonq.app)**.
 
@@ -65,20 +65,20 @@ Solid arrows are the always-on core. Dotted arrows are optional integrations tha
 
 ## The method, in named principles
 
-1. **Zero install** — the client app is already on the user's phone; there is nothing to download.
-2. **Conversation as UI** — onboarding, settings, and value delivery are all messages, not screens.
-3. **Onboarding-first** — value (the trial) activates *inside the first conversation*, before any form or card.
-4. **Notification-native retention** — re-engagement rides the messenger's own push channel (~80–90% open rates vs ~20% for email).
-5. **Observability from message #1** — every step is an event, so you can see the funnel from the very first interaction.
-6. **Deterministic core, AI at the edges** — business logic stays plain, testable code; the LLM only personalizes wording.
+1. **Don't make them install.** The client app is already on their phone.
+2. **Don't make them learn a UI.** The conversation *is* the UI.
+3. **Don't gate value behind a form.** The trial activates in the first chat.
+4. **Don't chase them by email.** The messenger's push does the retention (~80–90% open vs ~20%).
+5. **Don't ship a black box.** Instrument from the first message.
+6. **Don't let AI run the logic.** Keep the core deterministic; AI only personalizes.
 
 ## Messenger-Native vs web SaaS vs native mobile app
 
 | Dimension | Messenger-Native | Web SaaS | Native mobile app |
 | --- | --- | --- | --- |
 | Install / signup | None — open a chat | Account + password | Store download + account |
-| Friction to first value | Seconds, in-chat | Form + email verify | Download, install, sign up |
-| Notification open rate | ~80–90% | Email ~20% | Push often disabled |
+| Friction to first value | Seconds, in-chat | Form + email verify | Download, install, learn |
+| Notification open rate | ~80–90% | Email ~20% | Push often ignored or off |
 | Retention surface | A chat they already check | Re-marketing emails | One icon among hundreds |
 | Build cost | A single webhook | Frontend + backend + auth | Native app + store review |
 
@@ -86,16 +86,17 @@ Solid arrows are the always-on core. Dotted arrows are optional integrations tha
 
 **Use it when**
 
-- Your value is a recurring message or quick interaction (a daily cue, an alert, a check-in, a focused Q&A).
-- Your audience already lives in a messenger.
-- You want the lowest possible signup friction and high notification reach.
-- A short conversation can capture everything you need to onboard.
+- The job is to deliver information or a quick decision — a daily cue, an alert, a check-in, a Q&A.
+- The user already lives in a messenger.
+- A short conversation can capture everything onboarding needs.
+- Even a bank could talk to you this way, if the job is "tell me what I need to know."
 
-**Avoid it when**
+**Don't use it when**
 
-- Your product needs rich UI — dashboards, tables, data viz, drag-and-drop.
-- There's heavy data entry, file management, or long-form content editing.
-- You need full control of the UI/brand surface, or compliance forbids storing data in a third-party chat context.
+- You're editing media — images, video, audio. A chat is the wrong workshop.
+- You're watching live charts — tickers, dashboards, anything dense and visual.
+- You need rich UI: tables, drag-and-drop, data viz, long-form editing.
+- You need full control of the brand surface, or compliance forbids data in a third-party chat.
 
 ## Prerequisites
 
@@ -193,12 +194,22 @@ This template handles payments and personal identifiers. Read [docs/security-and
 
 ---
 
+## Why I built this
+
+My phone has a hundred apps on it. I open most of them once a year, if that.
+
+I built MoonQ — a bot for men who are a little lost in the complicated world of a partner's cycle — and the last thing that needed was a hundred-and-first icon to install and learn.
+
+So I didn't ship an app. I shipped a conversation. It lives in Telegram, which was already on the phone, and it just... talks: push that actually gets opened, a UI nobody has to learn (it's the same chat you use with friends), and an AI you can answer back to.
+
+We're tired — all of us — of every new tool being one more thing to figure out. This is my attempt to stop adding to the pile.
+
 ## Created by
 
 **[Paweł Jurewicz](https://github.com/pawel-jurewicz-heartmade)** — founder of **[Heartmade](https://heartmade.pl)** and **[Heartmade Studio](https://github.com/heartmade-studio)**.
 
 - Website: [heartmade.pl](https://heartmade.pl)
-- LinkedIn: <!-- TODO: add your LinkedIn URL -->
+- LinkedIn: [pawel-jurewicz](https://www.linkedin.com/in/pawel-jurewicz-b417a4b5/)
 - First product on this pattern: [MoonQ](https://moonq.app)
 
 ## Attribution
