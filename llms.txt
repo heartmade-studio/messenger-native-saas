@@ -1,37 +1,31 @@
-# Project
+# Messenger-Native SaaS
 
-*Documentation **v1.5** — MAJOR.MINOR (see README.md footer).*
+> Heartmade Studio reference repository — a runnable, forkable starter kit for micro-SaaS products that replace traditional browser dashboards with native messenger UX (e.g. Telegram). Edge-first, centered on an onboarding-first flow. The core (Telegram webhook + Supabase Postgres + a Deno Edge Function with a pure onboarding state machine) runs end-to-end; AI, billing and observability are optional adapters that degrade gracefully without env. Open source (MIT). Documentation v1.5.
 
-**Messenger-Native SaaS** — Heartmade Studio reference repository. It is a **runnable, forkable starter kit** for micro-SaaS products that replace traditional browser dashboards with native messenger UX (e.g. Telegram). The system is Edge-first and centers on an **Onboarding-first flow**. The core (Telegram webhook + Supabase Postgres + a Deno Edge Function with a pure onboarding state machine) runs end-to-end; AI/billing/observability are optional adapters that degrade gracefully without env.
+Reference implementation: **MoonQ** (https://moonq.app) — a Telegram bot that sends a man one daily message about his partner's menstrual-cycle phase and one concrete action.
 
-The reference implementation is **MoonQ** ([moonq.app](https://moonq.app)) — a Telegram bot that sends a man one daily message about his partner's menstrual-cycle phase and one concrete action. See `docs/moonq-case-study.md`.
+**Stack.** UX / front-end: Telegram Bot API (replaces web and mobile apps). Backend / compute: Supabase Edge Functions (Deno) for low-latency event handling. Database: Supabase (PostgreSQL). Subscriptions & payments: Stripe (webhooks + hosted Checkout). Intelligence: Gemini API (Google AI) for personalized cues, layered on top of deterministic business logic and reserved for paid plans — in MoonQ the cycle phase is computed by plain TypeScript, never an LLM; the 14-day free trial serves a manually reviewed, no-AI content bank, and there is no free tier. Observability: PostHog (product analytics) and Sentry (error tracking on Edge).
 
-## Core architecture stack
+**Principles.** Low friction, high retention: no passwords, no separate mobile app install. Onboarding-first flow: user data and service setup happen through a guided conversation at launch (four steps), then a free trial starts (e.g. 14 days); payments and checkout are handled by Stripe.
 
-- **UX / front-end:** Telegram Bot API (replaces web and mobile apps).
-- **Backend / compute:** Supabase Edge Functions (Deno) for low-latency event handling.
-- **Database:** Supabase (PostgreSQL).
-- **Subscriptions & payments:** Stripe (webhooks + hosted Checkout).
-- **Intelligence (AI composition):** Gemini API (Google AI) for **personalized cues**, layered on top of deterministic business logic and reserved for paid plans. In MoonQ the cycle phase is computed by plain TypeScript (never an LLM); the 14-day free trial serves a manually reviewed, no-AI content bank, and there is no free tier.
-- **Observability:** PostHog (product analytics) and Sentry (error tracking on Edge).
+Use these technical constraints when generating or extending features in this repository.
 
-## Main principles (philosophy)
+## Repository
 
-- **Low friction, high retention:** No passwords; no separate mobile app install.
-- **Onboarding-first flow:** User data and service setup happen through a guided conversation at launch (four steps), then a free trial starts (e.g. 14 days). Payments and checkout are handled by Stripe.
+- [README](https://github.com/heartmade-studio/messenger-native-saas/blob/main/README.md): method, quick start, deploy, positioning.
+- [ARCHITECTURE](https://github.com/heartmade-studio/messenger-native-saas/blob/main/ARCHITECTURE.md): diagrams and sequences.
+- [telegram-webhook function](https://github.com/heartmade-studio/messenger-native-saas/tree/main/supabase/functions/telegram-webhook): core Edge Function — dispatcher plus onboarding state machine.
+- [Shared adapters](https://github.com/heartmade-studio/messenger-native-saas/tree/main/supabase/functions/_shared): ai (Gemini + stub), billing (Stripe skeleton), analytics (PostHog / Sentry).
+- [Migrations](https://github.com/heartmade-studio/messenger-native-saas/tree/main/supabase/migrations): Postgres schema (users + events).
 
-This file is LLM-oriented context for the repository’s current architecture. Use these technical constraints when generating or extending features.
+## Docs
 
-## Key docs
+- [Billing and AI](https://github.com/heartmade-studio/messenger-native-saas/blob/main/docs/billing-and-ai.md): what is real versus TODO in the Stripe and Gemini adapters.
+- [MoonQ case study](https://github.com/heartmade-studio/messenger-native-saas/blob/main/docs/moonq-case-study.md): product narrative for the reference implementation.
+- [Security and compliance](https://github.com/heartmade-studio/messenger-native-saas/blob/main/docs/security-and-compliance.md): webhooks, secrets, sensitive data.
 
-| Path | Content |
-|------|---------|
-| README.md | Method, Quick start, deploy, positioning |
-| ARCHITECTURE.md | Diagrams and sequences |
-| supabase/functions/telegram-webhook/ | Core Edge Function: dispatcher + onboarding state machine |
-| supabase/functions/_shared/ | Adapters: ai (Gemini+stub), billing (Stripe skeleton), analytics (PostHog/Sentry) |
-| supabase/migrations/ | Postgres schema (users + events) |
-| docs/billing-and-ai.md | What's real vs TODO in the Stripe/Gemini adapters |
-| docs/moonq-case-study.md | Product narrative — **MoonQ** |
-| docs/security-and-compliance.md | Webhooks, secrets, sensitive data |
-| DESIGN.md | Landing page tokens only |
+## Optional
+
+- [MoonQ](https://moonq.app): the live reference implementation built on this starter.
+- [DESIGN.md](https://github.com/heartmade-studio/messenger-native-saas/blob/main/DESIGN.md): landing page tokens only.
+- [Heartmade Studio](https://github.com/heartmade-studio/): other vibe-coded apps and starters.
